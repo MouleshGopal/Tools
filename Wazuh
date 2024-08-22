@@ -1,0 +1,20 @@
+Wazuh Installation steps
+ 
+Step 1
+Make sure the server has minimum requirments met for wazuh installation (Ram-4gb, CPU cores-2)
+
+curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh
+curl -sO https://packages.wazuh.com/4.7/config.yml
+
+(vist wazuh official documentation https://documentation.wazuh.com/current/installation-guide/wazuh-indexer/installation-assistant.html
+for updated links)
+ 
+Step 2 
+Edit the config.yml file (add your server ip address and desired name in the ip and name sections)
+ 
+Step 3
+ 
+bash wazuh-install.sh -a 
+Run this command and wazuh will start the whole process
+ 
+End.
