@@ -1,0 +1,40 @@
+ How to install and configure Suricata in Ubuntu
+
+First update your ubuntu with "sudo apt update" command
+Then use the list of commands to download and install Suricata
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:oisf/suricata-stable
+sudo apt install suricata jq
+
+After the process check the version and status of suricata with the list of commands 
+sudo suricata --build-info
+sudo systemctl status suricata
+
+First, determine the interface(s) and IP address(es) on which Suricata should be watching network packets:
+Use command 'ip a' to findout the interface and ip address
+
+either edit from satrt with sudo vim /etc/suricata/suricata.yaml command 
+                                or
+go the the location of the yaml file with cd /etc/suricata/suricata.yaml command
+Main Edit 
+
+Edit the list of settings in suricata.yaml file for easy start.
+1) In home network change the ip address to your box or server address include with (/24 or any /number)
+2) search af-packet - edit the interace name with your own interface name (ex: default-enp1s0 ,own interface-enp0s3)
+3) search rule-path - add an another local rule to the rule files (ex-local.rules) 
+   ! Content of local.rules- { 1 alert icmp any any -> $HOME_NET any (msg:"ICMP Ping"; sid:1; rev:1;) }
+   ! Place this local.rules file in the location of suricata rules (/var/lib/suricata/rules) 
+4) search community - set false as true in the community section
+5) Save the file 
+
+Restart the suricata service with sudo systemctl restart suricata command 
+
+Check all the logs of the different kind of log services present in /var/log/suricata/ directory
+proceed when there are no errors 
+
+Open same box or server on diff tab use these commands
+1) sudo tail -f /var/log/suricata/fast.log (To check the logs of suircata)
+2) curl http://testmynids.org/uid/index.html (Attack simulation on the box or server)
+
+when ever the second command(2) is given a log should be seen under the first command(1) 
+Congratulations Suricata is running Successfully
