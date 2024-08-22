@@ -1,0 +1,14 @@
+Add the following configuration to the /var/ossec/etc/ossec.conf file of the Wazuh agent.
+This allows the Wazuh agent to read the Suricata logs file:
+<ossec_config>
+  <localfile>
+    <log_format>json</log_format>
+    <location>/var/log/suricata/eve.json</location>
+  </localfile>
+</ossec_config>
+
+Restart the Wazuh agent to apply the changes:
+
+sudo systemctl restart wazuh-agent
+
+Then If you start the attack emulation, wazuh will visulaize the logs on the dashboard.
