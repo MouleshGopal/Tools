@@ -1,15 +1,18 @@
- How to install and configure Suricata in Ubuntu
+## How to install and configure Suricata in Ubuntu
 
 First update your ubuntu with "sudo apt update" command
 Then use the list of commands to download and install Suricata
+```bash
 sudo apt-get install software-properties-common
 sudo add-apt-repository ppa:oisf/suricata-stable
 sudo apt install suricata jq
+```
 
 After the process check the version and status of suricata with the list of commands 
+```bash
 sudo suricata --build-info
 sudo systemctl status suricata
-
+```
 First, determine the interface(s) and IP address(es) on which Suricata should be watching network packets:
 Use command 'ip a' to findout the interface and ip address
 
